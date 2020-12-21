@@ -36,7 +36,11 @@ export const FooterRow = (props) => {
   }
 
   const getNumberOfPages = () => {
-    return Math.ceil(totalCount / size.value);
+    let result = Math.ceil(totalCount / size.value);
+    if (result === 0) {
+      result = 1;
+    }
+    return result;
   }
 
   const setPage = (page) => {
@@ -47,6 +51,7 @@ export const FooterRow = (props) => {
 
   useEffect(() => {
     let _pageNumbers = [];
+    console.log('NUMBER OF PAGES ::: ', getNumberOfPages())
     for (let i = 1; i <= getNumberOfPages(); i++) {
       _pageNumbers.push({ name: i.toString(), value: i });
     }
