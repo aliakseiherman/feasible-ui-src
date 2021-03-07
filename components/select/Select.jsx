@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Button } from '../button/Button';
-import { PopUp } from './PopUp';
-import '../../assets/styles/feasible-ui.css';
+import React, { useEffect, useRef, useState } from 'react'
+import { Button } from '../button/Button'
+import { PopUp } from './PopUp'
+import '../../assets/styles/feasible-ui.css'
 
 export const Select = (props) => {
 
@@ -13,51 +13,51 @@ export const Select = (props) => {
     label,
     selectedItem,
     setSelectedItem
-  } = props;
+  } = props
 
-  const [isPopUpVisible, setIsPopUpVisible] = useState(false);
+  const [isPopUpVisible, setIsPopUpVisible] = useState(false)
 
   const showPopUp = () => {
-    setIsPopUpVisible(true);
+    setIsPopUpVisible(true)
   }
 
   const handleItemSelected = (item) => {
-    setSelectedItem(item);
+    setSelectedItem(item)
   }
 
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState([])
 
   useEffect(() => {
-    setItems(props.items);
+    setItems(props.items)
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.items]);
+  }, [props.items])
 
-  const containerRef = useRef(null);
-  const buttonRef = useRef(null);
+  const containerRef = useRef(null)
+  const buttonRef = useRef(null)
 
   const handleClickOutside = (event) => {
     if (containerRef.current && !containerRef.current.contains(event.target)) {
-      setIsPopUpVisible(false);
+      setIsPopUpVisible(false)
     }
   }
 
   useEffect(() => {
     if (isPopUpVisible) {
-      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('mousedown', handleClickOutside)
     } else {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside)
     }
-  }, [isPopUpVisible]);
+  }, [isPopUpVisible])
 
   const getClassesForTriggerButton = () =>
     selectedItem
       ? ['primary']
-      : [];
+      : []
 
-  const getButtonLabel = () => selectedItem ? selectedItem.name : label;
+  const getButtonLabel = () => selectedItem ? selectedItem.name : label
 
-  const close = () => { setIsPopUpVisible(false); }
+  const close = () => { setIsPopUpVisible(false) }
 
   return (
     <React.Fragment>

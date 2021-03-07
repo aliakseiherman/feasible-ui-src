@@ -1,5 +1,5 @@
-import React from 'react';
-import { PlainTextCell } from './cell/PlainTextCell';
+import React from 'react'
+import { PlainTextCell } from './cell/PlainTextCell'
 
 export const Cell = (props) => {
 
@@ -8,10 +8,10 @@ export const Cell = (props) => {
     data,
     updateRow,
     dataRowsContainerRef
-  } = props;
+  } = props
 
   if (column.template) {
-    const Cell = column.template;
+    const Cell = column.template
     return (
       <Cell
         data={data}

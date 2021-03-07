@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { getSortByFn } from '../../helpers/array-helper';
-import { getPopupStyle, getWidth } from '../../helpers/position-helper';
-import { OBJECT_PROPERTY_NAME } from '../table/constants';
+import React, { useEffect, useRef, useState } from 'react'
+import { getSortByFn } from '../../helpers/array-helper'
+import { getPopupStyle, getWidth } from '../../helpers/position-helper'
+import { OBJECT_PROPERTY_NAME } from '../table/constants'
 
 export const AutoComplete = (props) => {
 
@@ -10,77 +10,77 @@ export const AutoComplete = (props) => {
     onEnterPressed: handleEnterPressed,
     items,
     parentContainerRef
-  } = props;
+  } = props
 
-  const itemsContainerRef = useRef(null);
+  const itemsContainerRef = useRef(null)
 
-  const [style, setStyle] = useState({});
+  const [style, setStyle] = useState({})
 
-  const inputRef = useRef(null);
+  const inputRef = useRef(null)
 
   const setFocus = () => {
     inputRef.current
       && inputRef.current.focus()
   }
 
-  const hide = () => { props.setIsSearchVisible(false); }
+  const hide = () => { props.setIsSearchVisible(false) }
 
-  const [searchValue, setSearchValue] = useState('');
+  const [searchValue, setSearchValue] = useState('')
 
   const handleSearchValueChanged = (e) => {
-    setSearchValue(e.target.value);
+    setSearchValue(e.target.value)
   }
 
   const getfilteredItems = () => {
     return items.filter((item) => {
       return item.name.toLowerCase().indexOf(searchValue.toLowerCase()) !== -1
-    });
+    })
   }
 
   useEffect(() => {
-    setFocus();
+    setFocus()
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [inputRef.current]);
+  }, [inputRef.current])
 
   useEffect(() => {
     if (itemsContainerRef.current) {
-      let _style = getPopupStyle(parentContainerRef, inputRef);
-      _style.width = getWidth(itemsContainerRef).toString() + 'px';
-      setStyle(_style);
+      let _style = getPopupStyle(parentContainerRef, inputRef)
+      _style.width = getWidth(itemsContainerRef).toString() + 'px'
+      setStyle(_style)
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [itemsContainerRef.current]);
+  }, [itemsContainerRef.current])
 
-  const containerRef = useRef(null);
+  const containerRef = useRef(null)
 
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (containerRef.current && !containerRef.current.contains(event.target)) {
-        hide();
+        hide()
       }
     }
 
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside)
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+      document.removeEventListener("mousedown", handleClickOutside)
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [containerRef]);
+  }, [containerRef])
 
   const handleKeyDown = (e) => {
     switch (e.key) {
       case 'Escape':
-        hide();
-        break;
+        hide()
+        break
       case 'Enter':
-        handleEnterPressed(e.target.value);
-        setSearchValue('');
-        hide();
-        break;
+        handleEnterPressed(e.target.value)
+        setSearchValue('')
+        hide()
+        break
       default:
-        break;
+        break
     }
   }
 
@@ -98,9 +98,9 @@ export const AutoComplete = (props) => {
             <div
               className='item'
               onClick={() => {
-                handleItemSelected(item);
-                setSearchValue('');
-                setFocus();
+                handleItemSelected(item)
+                setSearchValue('')
+                setFocus()
               }}
               key={i}
             >

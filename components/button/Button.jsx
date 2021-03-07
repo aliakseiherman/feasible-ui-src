@@ -1,6 +1,6 @@
-import React from 'react';
-import { getClassName } from '../../helpers/css-class-helper';
-import '../../assets/styles/feasible-ui.css';
+import React from 'react'
+import { getClassName } from '../../helpers/css-class-helper'
+import '../../assets/styles/feasible-ui.css'
 
 export const Button = React.forwardRef((props, ref) => {
 
@@ -10,14 +10,14 @@ export const Button = React.forwardRef((props, ref) => {
     innerMarkup,
     isDisabled,
     classes: _classes
-  } = props;
+  } = props
 
-  let classes = ['button'];
-  isDisabled && classes.push('disabled');
-  classes = classes.concat(_classes);
+  let classes = ['button']
+  isDisabled && classes.push('disabled')
+  classes = classes.concat(_classes)
 
   const handleClick = () => {
-    !isDisabled && _handleClick();
+    !isDisabled && _handleClick()
   }
 
   return (

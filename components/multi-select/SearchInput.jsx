@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react'
 
 export const SearchInput = (props) => {
 
@@ -7,34 +7,34 @@ export const SearchInput = (props) => {
     onEnterPressed: handleEnterPressed,
     items,
     isAutoFocus
-  } = props;
+  } = props
 
-  const [value, _setValue] = useState('');
+  const [value, _setValue] = useState('')
   const setValue = (value) => {
-    _setValue(value);
-    _handleChange(value);
+    _setValue(value)
+    _handleChange(value)
   }
 
-  const inputRef = useRef(null);
+  const inputRef = useRef(null)
 
   const handleChange = (e) => { setValue(e.target.value) }
 
   useEffect(() => {
     isAutoFocus &&
-      inputRef.current.focus();
+      inputRef.current.focus()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [inputRef.current]);
+  }, [inputRef.current])
 
   const handleKeyDown = (e) => {
     switch (e.key) {
       case 'Escape':
-        break;
+        break
       case 'Enter':
-        handleEnterPressed(value);
-        setTimeout(() => { setValue(''); }, 500)
-        break;
+        handleEnterPressed(value)
+        setTimeout(() => { setValue('') }, 500)
+        break
       default:
-        break;
+        break
     }
   }
 

@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { getPopupStyle } from '../../helpers/position-helper';
-import { Button } from '../button/Button';
+import React, { useEffect, useState } from 'react'
+import { getPopupStyle } from '../../helpers/position-helper'
+import { Button } from '../button/Button'
 
 export const PopUp = (props) => {
 
@@ -8,9 +8,9 @@ export const PopUp = (props) => {
     parentContainerRef,
     triggerRef,
     buttons
-  } = props;
+  } = props
 
-  const [style, setStyle] = useState({});
+  const [style, setStyle] = useState({})
 
   useEffect(() => {
     let _style = getPopupStyle(parentContainerRef, triggerRef, {
@@ -18,16 +18,16 @@ export const PopUp = (props) => {
       anchor: {
         x: 'r'
       }
-    });
-    setStyle(_style);
-  }, [parentContainerRef, triggerRef]);
+    })
+    setStyle(_style)
+  }, [parentContainerRef, triggerRef])
 
   return (
     <div className='popup' style={style}>
       {buttons.map((button, i) => (
         <Button
           onClick={() => {
-            button.onClick();
+            button.onClick()
           }}
           label={button.label}
           classes={button.classes}

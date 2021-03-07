@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { getClassName } from '../../../helpers/css-class-helper';
-import { OBJECT_PROPERTY_ABOUT, OBJECT_PROPERTY_NAME } from '../../table/constants';
-import { Tags } from '../../tags/Tags';
+import React, { useEffect, useState } from 'react'
+import { getClassName } from '../../../helpers/css-class-helper'
+import { OBJECT_PROPERTY_ABOUT, OBJECT_PROPERTY_NAME } from '../../table/constants'
+import { Tags } from '../../tags/Tags'
 
 const Cell = (props) => {
 
@@ -11,26 +11,26 @@ const Cell = (props) => {
     updateRow,
     descriptor,
     dataRowsContainerRef
-  } = props;
+  } = props
 
   const {
     getTags,
     onTagAdded: _handleTagAdded,
     onTagRemoved: _handleTagRemoved
-  } = descriptor;
+  } = descriptor
 
-  const style = column.style;
+  const style = column.style
 
   const handleTagAdded = (tag) => {
     _handleTagAdded(data, tag).then(() => {
-      updateRow(data);
-    });
+      updateRow(data)
+    })
   }
 
   const handleTagRemoved = (tag) => {
     _handleTagRemoved(data, tag).then(() => {
-      updateRow(data);
-    });
+      updateRow(data)
+    })
   }
 
   return (
@@ -61,9 +61,9 @@ export const TagsRow = (props) => {
     descriptor,
     dataRowsContainerRef,
     settings
-  } = props;
+  } = props
 
-  const finalRowClass = getClassName(settings.cssClasses.concat('auxilliary-row'));
+  const finalRowClass = getClassName(settings.cssClasses.concat('auxilliary-row'))
 
   useEffect(() => {
 

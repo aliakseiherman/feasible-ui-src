@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import { getCellValue } from '../helper'
 
 export const PlainTextCell = (props) => {
@@ -6,18 +6,18 @@ export const PlainTextCell = (props) => {
   const {
     data,
     column
-  } = props;
+  } = props
 
-  const style = column.style;
+  const style = column.style
 
-  let value = getCellValue(data, column);
+  let value = getCellValue(data, column)
 
-  let isTextAvailable = value && value.length > 0;
+  let isTextAvailable = value && value.length > 0
 
-  let className = '';
+  let className = ''
 
   if (!column.textSelectable) {
-    className = 'non-selectable';
+    className = 'non-selectable'
   }
 
   return (

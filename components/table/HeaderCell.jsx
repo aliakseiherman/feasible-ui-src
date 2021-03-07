@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import store from './store';
-import { EVENT_HEADER_CELL_CLICKED, SORT_DIRECTION_ASCENDING, SORT_DIRECTION_DESCENDING } from './constants';
+import React, { useState, useEffect } from 'react'
+import store from './store'
+import { EVENT_HEADER_CELL_CLICKED, SORT_DIRECTION_ASCENDING, SORT_DIRECTION_DESCENDING } from './constants'
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLongArrowAltUp, faLongArrowAltDown } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faLongArrowAltUp, faLongArrowAltDown } from '@fortawesome/free-solid-svg-icons'
 
 export const HeaderCell = (props) => {
 
@@ -11,57 +11,57 @@ export const HeaderCell = (props) => {
     column,
     defaultSortColumnName,
     defaultSortDirection
-  } = props;
+  } = props
 
   const {
     style,
     name: columnName,
     objectProperty,
     isSortable
-  } = column;
+  } = column
 
-  const [orderDirection, setOrderDirection] = useState(null);
+  const [orderDirection, setOrderDirection] = useState(null)
 
   useEffect(() => {
     if (objectProperty === defaultSortColumnName) {
       if (defaultSortDirection === SORT_DIRECTION_ASCENDING) {
-        setOrderDirection(SORT_DIRECTION_ASCENDING);
+        setOrderDirection(SORT_DIRECTION_ASCENDING)
       } else {
-        setOrderDirection(SORT_DIRECTION_DESCENDING);
+        setOrderDirection(SORT_DIRECTION_DESCENDING)
       }
     }
 
     const unsubscribe = store.subscribe(() => {
-      let bus = store.getState().bus;
+      let bus = store.getState().bus
 
       if (bus.type === EVENT_HEADER_CELL_CLICKED) {
         if (bus.tableGuid === props.tableGuid && bus.columnName !== objectProperty) {
-          setOrderDirection(null);
+          setOrderDirection(null)
         }
       }
-    });
+    })
 
     return () => {
-      unsubscribe();
+      unsubscribe()
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [])
 
   const handleSort = () => {
 
-    let value = SORT_DIRECTION_ASCENDING;
+    let value = SORT_DIRECTION_ASCENDING
 
     if (orderDirection === SORT_DIRECTION_ASCENDING) {
-      value = SORT_DIRECTION_DESCENDING;
+      value = SORT_DIRECTION_DESCENDING
     }
 
-    setOrderDirection(value);
+    setOrderDirection(value)
 
-    store.dispatch({ type: EVENT_HEADER_CELL_CLICKED, tableGuid: props.tableGuid, columnName: objectProperty, orderDirection: value });
+    store.dispatch({ type: EVENT_HEADER_CELL_CLICKED, tableGuid: props.tableGuid, columnName: objectProperty, orderDirection: value })
   }
 
-  let arrowSymbol = '';
+  let arrowSymbol = ''
 
   if (orderDirection === SORT_DIRECTION_ASCENDING) {
     arrowSymbol = <FontAwesomeIcon icon={faLongArrowAltUp} />

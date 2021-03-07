@@ -1,1 +1,1 @@
-export const getClassName = (classes) => classes.join(' ');
+export const getClassName = (classes) => classes.join(' ')

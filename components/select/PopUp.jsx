@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { getSortByFn } from '../../helpers/array-helper';
-import { getPopupStyle, getWidth } from '../../helpers/position-helper';
-import { SearchInput } from './SearchInput';
+import React, { useEffect, useRef, useState } from 'react'
+import { getSortByFn } from '../../helpers/array-helper'
+import { getPopupStyle, getWidth } from '../../helpers/position-helper'
+import { SearchInput } from './SearchInput'
 
 export const PopUp = (props) => {
 
@@ -16,79 +16,79 @@ export const PopUp = (props) => {
     hasClear,
     parentContainerRef,
     triggerRef
-  } = props;
+  } = props
 
-  const itemsContainerRef = useRef(null);
+  const itemsContainerRef = useRef(null)
 
-  const [style, setStyle] = useState({});
-  const [searchValue, setSearchValue] = useState('');
+  const [style, setStyle] = useState({})
+  const [searchValue, setSearchValue] = useState('')
 
-  const [filteredItems, setFilteredItems] = useState(null);
+  const [filteredItems, setFilteredItems] = useState(null)
 
   const getItems = () => {
     if (sortBy) {
-      return items.sort(getSortByFn(sortBy));
+      return items.sort(getSortByFn(sortBy))
     } else {
-      return items;
+      return items
     }
   }
 
   useEffect(() => {
-    let _style = getPopupStyle(parentContainerRef, triggerRef);
-    setStyle(_style);
+    let _style = getPopupStyle(parentContainerRef, triggerRef)
+    setStyle(_style)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [])
 
   useEffect(() => {
-    filterItems();
+    filterItems()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [items]);
+  }, [items])
 
   useEffect(() => {
-    filterItems();
+    filterItems()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchValue]);
+  }, [searchValue])
 
   useEffect(() => {
     if (itemsContainerRef.current) {
-      let _style = getPopupStyle(parentContainerRef, triggerRef);
-      _style.width = getWidth(itemsContainerRef).toString() + 'px';
-      setStyle(_style);
+      let _style = getPopupStyle(parentContainerRef, triggerRef)
+      _style.width = getWidth(itemsContainerRef).toString() + 'px'
+      setStyle(_style)
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [itemsContainerRef.current]);
+  }, [itemsContainerRef.current])
 
   const handleClick = (item) => {
-    handleItemSelected(item);
-    close();
+    handleItemSelected(item)
+    close()
   }
 
   const handleSearchValueChanged = (value) => { setSearchValue(value) }
 
   const filterItems = () => {
     setFilteredItems(getItems().filter((item) => {
-      return item.name.toLowerCase().indexOf(searchValue.toLowerCase()) !== -1;
-    }));
+      return item.name.toLowerCase().indexOf(searchValue.toLowerCase()) !== -1
+    }))
   }
 
-  const isClearable = () => hasClear && !!selectedItem;
+  const isClearable = () => hasClear && !!selectedItem
 
   const clear = () => {
-    setSelectedItem(null);
-    close();
+    setSelectedItem(null)
+    close()
   }
 
   const renderItems = () => {
 
     const getClass = (item) => {
-      let classes = ['item'];
+      let classes = ['item']
 
       if (selectedItem === item) {
-        classes.push('selected');
+        classes.push('selected')
       }
 
-      return classes.join(' ');
+      return classes.join(' ')
     }
 
     return (
@@ -96,7 +96,7 @@ export const PopUp = (props) => {
         {filteredItems && filteredItems.map((item, i) => (
           <div
             onClick={() => {
-              handleClick(item);
+              handleClick(item)
             }}
             className={getClass(item)}
             key={i}

@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import store from './store';
-import { EVENT_PAGE_CHANGED, EVENT_SIZE_CHANGED } from './constants';
-import { Button } from '../button/Button';
-import { Select } from '../select/Select';
-import { useEffect } from 'react';
+import React, { useState } from 'react'
+import store from './store'
+import { EVENT_PAGE_CHANGED, EVENT_SIZE_CHANGED } from './constants'
+import { Button } from '../button/Button'
+import { Select } from '../select/Select'
+import { useEffect } from 'react'
 
 export const FooterRow = (props) => {
 
@@ -11,72 +11,68 @@ export const FooterRow = (props) => {
     totalCount,
     footer,
     tableContainerRef
-  } = props;
+  } = props
 
-  const pageSize5 = { name: '5', value: 5 };
-  const pageSize10 = { name: '10', value: 10 };
-  const pageSize25 = { name: '25', value: 25 };
-  const pageSize50 = { name: '50', value: 50 };
-  const pageSize100 = { name: '100', value: 100 };
-  const pageSize250 = { name: '250', value: 250 };
-  const pageSize500 = { name: '500', value: 500 };
+  const pageSize5 = { name: '5', value: 5 }
+  const pageSize10 = { name: '10', value: 10 }
+  const pageSize25 = { name: '25', value: 25 }
+  const pageSize50 = { name: '50', value: 50 }
+  const pageSize100 = { name: '100', value: 100 }
+  const pageSize250 = { name: '250', value: 250 }
+  const pageSize500 = { name: '500', value: 500 }
 
-  const _pageSizes = [pageSize5, pageSize10, pageSize25, pageSize50, pageSize100, pageSize250, pageSize500];
+  const _pageSizes = [pageSize5, pageSize10, pageSize25, pageSize50, pageSize100, pageSize250, pageSize500]
 
-  const [pageSizes] = useState(_pageSizes);
+  const [pageSizes] = useState(_pageSizes)
 
-  const [size, setSize] = useState(pageSizes.filter(s => s.value === props.size)[0]);
-  const [pageNumber, setPageNumber] = useState();
-  const [pageNumbers, setPageNumbers] = useState([]);
+  const [size, setSize] = useState(pageSizes.filter(s => s.value === props.size)[0])
+  const [pageNumber, setPageNumber] = useState()
+  const [pageNumbers, setPageNumbers] = useState([])
 
   const setSizeForParent = (size) => {
-    setSize(size);
+    setSize(size)
 
-    store.dispatch({ type: EVENT_SIZE_CHANGED, tableGuid: props.tableGuid, size: size.value });
+    store.dispatch({ type: EVENT_SIZE_CHANGED, tableGuid: props.tableGuid, size: size.value })
   }
 
   const getNumberOfPages = () => {
-    let result = Math.ceil(totalCount / size.value);
-    if (result === 0) {
-      result = 1;
-    }
-    return result;
+    let number = Math.ceil(totalCount / size.value)
+    return number > 0 ? number : 1
   }
 
   const setPage = (page) => {
-    if (page.value < 1 || page.value > getNumberOfPages()) return;
-    setPageNumber(page);
-    store.dispatch({ type: EVENT_PAGE_CHANGED, tableGuid: props.tableGuid, number: page.value });
+    if (page.value < 1 || page.value > getNumberOfPages()) return
+    setPageNumber(page)
+    store.dispatch({ type: EVENT_PAGE_CHANGED, tableGuid: props.tableGuid, number: page.value })
   }
 
   useEffect(() => {
-    let _pageNumbers = [];
-    console.log('NUMBER OF PAGES ::: ', getNumberOfPages())
-    for (let i = 1; i <= getNumberOfPages(); i++) {
-      _pageNumbers.push({ name: i.toString(), value: i });
+    let _pageNumbers = []
+    for (let i = 1;i <= getNumberOfPages();i++) {
+      _pageNumbers.push({ name: i.toString(), value: i })
     }
-    setPageNumbers(_pageNumbers);
-    setPage(_pageNumbers[0]);
+    setPageNumbers(_pageNumbers)
+    setPage(_pageNumbers[0])
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [totalCount, size]);
+  }, [totalCount, size])
 
   const next = () => {
     pageNumber.value > 1 &&
-      setPage(pageNumbers.filter(pn => pn.value === pageNumber.value - 1)[0]);
+      setPage(pageNumbers.filter(pn => pn.value === pageNumber.value - 1)[0])
   }
 
   const prev = () => {
     pageNumber.value < getNumberOfPages() &&
-      setPage(pageNumbers.filter(pn => pn.value === pageNumber.value + 1)[0]);
+      setPage(pageNumbers.filter(pn => pn.value === pageNumber.value + 1)[0])
   }
 
   const first = () => {
-    setPage(pageNumbers.filter(pn => pn.value === 1)[0]);
+    setPage(pageNumbers.filter(pn => pn.value === 1)[0])
   }
 
   const last = () => {
-    setPage(pageNumbers.filter(pn => pn.value === getNumberOfPages())[0]);
+    setPage(pageNumbers.filter(pn => pn.value === getNumberOfPages())[0])
   }
 
   return (
@@ -106,7 +102,7 @@ export const FooterRow = (props) => {
                 items={pageNumbers}
                 selectedItem={pageNumber}
                 setSelectedItem={(page) => {
-                  setPage(page);
+                  setPage(page)
                 }}
                 hasSearch={true}
                 parentContainerRef={tableContainerRef}
@@ -143,7 +139,7 @@ export const FooterRow = (props) => {
             items={pageSizes}
             selectedItem={size}
             setSelectedItem={(size) => {
-              setSizeForParent(size);
+              setSizeForParent(size)
             }}
             parentContainerRef={tableContainerRef}
           ></Select>

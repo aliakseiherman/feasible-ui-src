@@ -1,6 +1,6 @@
-import React from 'react';
-import { SelectedItem } from './SelectedItem';
-import { UnselectAllItems } from './UnselectAllItems';
+import React from 'react'
+import { SelectedItem } from './SelectedItem'
+import { UnselectAllItems } from './UnselectAllItems'
 
 export const SelectedItems = (props) => {
 
@@ -8,7 +8,7 @@ export const SelectedItems = (props) => {
     items,
     onItemUnselected: handleItemUnselected,
     onUnselectedAllItems: handleUnselectedAllItems
-  } = props;
+  } = props
 
   return (
     <div className='selected-items-container'>

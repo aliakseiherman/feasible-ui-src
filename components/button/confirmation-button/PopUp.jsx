@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { Button } from '../Button';
-import { getPopupStyle } from '../../../helpers/position-helper';
+import React, { useEffect, useState } from 'react'
+import { Button } from '../Button'
+import { getPopupStyle } from '../../../helpers/position-helper'
 
 export const PopUp = (props) => {
 
@@ -9,22 +9,22 @@ export const PopUp = (props) => {
     triggerRef,
     onConfirm: handleConfirm,
     setIsCofirmationVisible
-  } = props;
+  } = props
 
-  const [style, setStyle] = useState({});
+  const [style, setStyle] = useState({})
 
   useEffect(() => {
-    let _style = getPopupStyle(parentContainerRef, triggerRef, { pxReservedAbove: 21 });
-    setStyle(_style);
-  }, [parentContainerRef, triggerRef]);
+    let _style = getPopupStyle(parentContainerRef, triggerRef, { pxReservedAbove: 21 })
+    setStyle(_style)
+  }, [parentContainerRef, triggerRef])
 
   return (
     <div className='popup' style={style}>
 
       <Button
         onClick={() => {
-          handleConfirm();
-          setIsCofirmationVisible(false);
+          handleConfirm()
+          setIsCofirmationVisible(false)
         }}
         label={'confirm'}
         classes={['primary']}
@@ -32,7 +32,7 @@ export const PopUp = (props) => {
 
       <Button
         onClick={() => {
-          setIsCofirmationVisible(false);
+          setIsCofirmationVisible(false)
         }}
         label={'cancel'}
         classes={['secondary']}

@@ -1,10 +1,10 @@
 export const getString = (value) => {
 
-  let result = '';
+  let result = ''
 
   if (value !== null && value !== undefined) {
-    result = value.toString();
+    result = value.toString()
   }
 
-  return result;
+  return result
 }

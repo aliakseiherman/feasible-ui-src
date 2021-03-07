@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { AutoComplete } from './AutoComplete';
-import { Tag } from './Tag';
+import React, { useEffect, useState } from 'react'
+import { AutoComplete } from './AutoComplete'
+import { Tag } from './Tag'
 
-import '../../assets/styles/feasible-ui.css';
+import '../../assets/styles/feasible-ui.css'
 
 export const Tags = (props) => {
 
@@ -12,42 +12,42 @@ export const Tags = (props) => {
     onTagRemoved: handleTagRemoved,
     getTags,
     isConfirmOnDelete
-  } = props;
+  } = props
 
-  const [isSearchVisible, setIsSearchVisible] = useState(false);
-  const [selectedTags, setSelectedTags] = useState([]);
+  const [isSearchVisible, setIsSearchVisible] = useState(false)
+  const [selectedTags, setSelectedTags] = useState([])
 
   useEffect(() => {
     setSelectedTags(props.selectedTags)
-  }, [props.selectedTags]);
+  }, [props.selectedTags])
 
   const handleEnterPressed = (tagName) => {
-    handleTagAdded({ name: tagName });
+    handleTagAdded({ name: tagName })
   }
 
   const handleTagSelected = (tag) => {
-    handleTagAdded(tag);
+    handleTagAdded(tag)
   }
 
   const handleTagUnselected = (tag) => {
-    handleTagRemoved(tag);
+    handleTagRemoved(tag)
   }
 
   const handleClick = () => {
-    setIsSearchVisible(true);
+    setIsSearchVisible(true)
   }
 
   const getUnselectedItems = () => {
     return getTags().filter((tag) => {
-      let isUnselected = true;
+      let isUnselected = true
 
       selectedTags.forEach((selectedItem) => {
         if (selectedItem.name === tag.name) {
-          isUnselected = false;
+          isUnselected = false
         }
-      });
+      })
 
-      return isUnselected;
+      return isUnselected
     })
   }
 
@@ -81,5 +81,5 @@ export const Tags = (props) => {
       )}
 
     </div>
-  );
+  )
 }

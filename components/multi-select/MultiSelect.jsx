@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Button } from '../button/Button';
-import { PopUp } from './PopUp';
-import { SelectedItems } from './SelectedItems';
-import '../../assets/styles/feasible-ui.css';
+import React, { useEffect, useRef, useState } from 'react'
+import { Button } from '../button/Button'
+import { PopUp } from './PopUp'
+import { SelectedItems } from './SelectedItems'
+import '../../assets/styles/feasible-ui.css'
 
 export const MultiSelect = (props) => {
 
@@ -18,96 +18,96 @@ export const MultiSelect = (props) => {
     onSelected: _handleItemSelected,
     onUnselected: _handleItemUnselected,
     onCreateNewItem: _handleCreateNewItem
-  } = props;
+  } = props
 
-  const [isPopUpVisible, setIsPopUpVisible] = useState(false);
+  const [isPopUpVisible, setIsPopUpVisible] = useState(false)
 
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState([])
 
   useEffect(() => {
-    setItems(props.items);
+    setItems(props.items)
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.items]);
+  }, [props.items])
 
-  const containerRef = useRef(null);
-  const buttonRef = useRef(null);
+  const containerRef = useRef(null)
+  const buttonRef = useRef(null)
 
   const handleItemSelected = (item) => {
-    setSelectedItems(oldItems => [...oldItems, item]);
-    _handleItemSelected && _handleItemSelected(item);
+    setSelectedItems(oldItems => [...oldItems, item])
+    _handleItemSelected && _handleItemSelected(item)
   }
 
   const handleItemUnselected = (item) => {
-    setSelectedItems(selectedItems.filter(_item => _item.name !== item.name));
-    _handleItemUnselected && _handleItemUnselected(item);
+    setSelectedItems(selectedItems.filter(_item => _item.name !== item.name))
+    _handleItemUnselected && _handleItemUnselected(item)
   }
 
   const handleAllItemsUnselected = () => {
-    setSelectedItems([]);
+    setSelectedItems([])
   }
 
   const handleAllItemsSelected = () => {
-    setSelectedItems([]);
-    setSelectedItems(items);
+    setSelectedItems([])
+    setSelectedItems(items)
 
     if (isItemsOutside) {
-      setIsPopUpVisible(false);
+      setIsPopUpVisible(false)
     }
   }
 
   const handleItemClicked = (item) => {
     if (selectedItems.indexOf(item) > -1) {
-      handleItemUnselected(item);
+      handleItemUnselected(item)
     } else {
-      handleItemSelected(item);
+      handleItemSelected(item)
     }
   }
 
   const getUnselectedItems = () => {
     if (isItemsOutside) {
       return items.filter((item) => {
-        return selectedItems.indexOf(item) === -1;
-      });
+        return selectedItems.indexOf(item) === -1
+      })
     } else {
-      return items;
+      return items
     }
   }
 
   const handleClickOutside = (event) => {
     if (containerRef.current && !containerRef.current.contains(event.target)) {
-      setIsPopUpVisible(false);
+      setIsPopUpVisible(false)
     }
   }
 
   useEffect(() => {
     if (isPopUpVisible) {
-      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('mousedown', handleClickOutside)
     } else {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside)
     }
-  }, [isPopUpVisible]);
+  }, [isPopUpVisible])
 
   useEffect(() => {
     if (isPopUpVisible
       && getUnselectedItems().length === 0
       && !_handleCreateNewItem) {
-      setIsPopUpVisible(false);
+      setIsPopUpVisible(false)
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedItems]);
+  }, [selectedItems])
 
   const showPopUp = () => {
     if (_handleCreateNewItem) {
-      setIsPopUpVisible(true);
-      return;
+      setIsPopUpVisible(true)
+      return
     }
 
     if (isItemsOutside) {
-      setIsPopUpVisible(getUnselectedItems().length > 0);
+      setIsPopUpVisible(getUnselectedItems().length > 0)
     } else {
-      setIsPopUpVisible(true);
+      setIsPopUpVisible(true)
     }
   }
 
@@ -115,16 +115,16 @@ export const MultiSelect = (props) => {
     _handleCreateNewItem(value)
       .then((newItem) => {
         !selectedItems.some(m => m.name === value) &&
-          setSelectedItems(oldItems => [...oldItems, newItem]);
-      });
+          setSelectedItems(oldItems => [...oldItems, newItem])
+      })
   }
 
-  const isAnyItemsSelectedInside = () => !isItemsOutside && selectedItems.length > 0;
+  const isAnyItemsSelectedInside = () => !isItemsOutside && selectedItems.length > 0
 
   const getClassesForTriggerButton = () =>
     isAnyItemsSelectedInside()
       ? ['primary']
-      : [];
+      : []
 
   return (
     <React.Fragment>

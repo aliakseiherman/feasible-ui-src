@@ -1,7 +1,7 @@
-import React from 'react';
-import { getClassName } from '../../helpers/css-class-helper';
-import { Cell } from './Cell';
-import { preProcessColumns } from './helper';
+import React from 'react'
+import { getClassName } from '../../helpers/css-class-helper'
+import { Cell } from './Cell'
+import { preProcessColumns } from './helper'
 
 export const Row = (props) => {
 
@@ -12,11 +12,11 @@ export const Row = (props) => {
     updateRow,
     settings,
     dataRowsContainerRef
-  } = props;
+  } = props
 
-  const finalRowClass = getClassName(settings.cssClasses.concat('row'));
+  const finalRowClass = getClassName(settings.cssClasses.concat('row'))
 
-  preProcessColumns(row, columns);
+  preProcessColumns(row, columns)
 
   return (
     <div className={finalRowClass}>

@@ -1,1 +1,1 @@
-export const isOdd = num => num % 2;
+export const isOdd = num => num % 2

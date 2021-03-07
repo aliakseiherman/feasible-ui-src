@@ -1,24 +1,24 @@
-import React from 'react';
-import { useHistory } from 'react-router-dom';
-import { getCellValue } from '../helper';
+import React from 'react'
+import { useHistory } from 'react-router-dom'
+import { getCellValue } from '../helper'
 
 export const LinkCell = (props) => {
 
   const {
     data,
     column
-  } = props;
+  } = props
 
-  const style = column.style;
+  const style = column.style
 
-  let value = getCellValue(data, column);
+  let value = getCellValue(data, column)
 
-  let isTextAvailable = text && text.length > 0;
+  let isTextAvailable = text && text.length > 0
 
-  const history = useHistory();
+  const history = useHistory()
 
   function onClick() {
-    history.push(column.link.get(data));
+    history.push(column.link.get(data))
   }
 
   return (

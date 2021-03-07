@@ -1,5 +1,5 @@
-import React from 'react';
-import { getRowClass } from '../../table/helper';
+import React from 'react'
+import { getRowClass } from '../../table/helper'
 
 export const ModelsAvailableRow = (props) => {
 
@@ -11,11 +11,11 @@ export const ModelsAvailableRow = (props) => {
     descriptor,
     updateRow,
     dataRowsContainerRef: parentContainerRef
-  } = props;
+  } = props
 
-  const cssClass = getRowClass(settings, 'row');
+  const cssClass = getRowClass(settings, 'row')
 
-  const cars = data.modelsAvailable;
+  const cars = data.modelsAvailable
 
   return (
     <React.Fragment>

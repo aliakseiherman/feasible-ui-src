@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Button } from '../button/Button';
+import React, { useEffect, useState } from 'react'
+import { Button } from '../button/Button'
 import { getPopupStyle } from '../../helpers/position-helper'
 
 export const PopUp = (props) => {
@@ -8,9 +8,9 @@ export const PopUp = (props) => {
     parentContainerRef,
     triggerRef,
     onSave: handleSave
-  } = props;
+  } = props
 
-  const [style, setStyle] = useState({});
+  const [style, setStyle] = useState({})
 
   useEffect(() => {
     let _style = getPopupStyle(parentContainerRef, triggerRef, {
@@ -18,9 +18,9 @@ export const PopUp = (props) => {
       anchor: {
         x: 'r'
       }
-    });
-    setStyle(_style);
-  }, [parentContainerRef, triggerRef]);
+    })
+    setStyle(_style)
+  }, [parentContainerRef, triggerRef])
 
   return (
     <div className='popup' style={style}>

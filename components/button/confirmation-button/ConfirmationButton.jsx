@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { PopUp } from './PopUp';
-import { Button } from '../Button';
-import '../../../assets/styles/feasible-ui.css';
+import React, { useEffect, useRef, useState } from 'react'
+import { PopUp } from './PopUp'
+import { Button } from '../Button'
+import '../../../assets/styles/feasible-ui.css'
 
 export const ConfirmationButton = (props) => {
 
@@ -12,31 +12,31 @@ export const ConfirmationButton = (props) => {
     isDisabled,
     onConfirm: handleConfirm,
     parentContainerRef,
-  } = props;
+  } = props
 
-  const [isCofirmationVisible, setIsCofirmationVisible] = useState(false);
+  const [isCofirmationVisible, setIsCofirmationVisible] = useState(false)
 
-  const containerRef = useRef(null);
-  const buttonRef = useRef(null);
+  const containerRef = useRef(null)
+  const buttonRef = useRef(null)
 
   const onClick = () => {
     !isDisabled &&
-      setIsCofirmationVisible(true);
+      setIsCofirmationVisible(true)
   }
 
   const handleClickOutside = (event) => {
     if (containerRef.current && !containerRef.current.contains(event.target)) {
-      setIsCofirmationVisible(false);
+      setIsCofirmationVisible(false)
     }
   }
 
   useEffect(() => {
     if (isCofirmationVisible) {
-      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('mousedown', handleClickOutside)
     } else {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside)
     }
-  }, [isCofirmationVisible]);
+  }, [isCofirmationVisible])
 
   return (
     <div

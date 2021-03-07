@@ -1,27 +1,27 @@
-import React, { useEffect, useState } from 'react';
-import '../../assets/styles/feasible-ui.css';
+import React, { useEffect, useState } from 'react'
+import '../../assets/styles/feasible-ui.css'
 
 export const ToggleButton = (props) => {
 
   const {
     onChange: handleChange,
     tooltip: _tooltip
-  } = props;
+  } = props
 
-  const [isOn, setIsOn] = useState(false);
+  const [isOn, setIsOn] = useState(false)
 
-  const tooltip = _tooltip ? _tooltip : '';
+  const tooltip = _tooltip ? _tooltip : ''
 
-  let classes = ['toggle'];
-  isOn && classes.push('toggle-enabled');
-  let className = classes.join(' ');
+  let classes = ['toggle']
+  isOn && classes.push('toggle-enabled')
+  let className = classes.join(' ')
 
   useEffect(() => {
-    setIsOn(props.isOn);
-  }, [props.isOn]);
+    setIsOn(props.isOn)
+  }, [props.isOn])
 
   const handleClick = () => {
-    handleChange();
+    handleChange()
   }
 
   return (

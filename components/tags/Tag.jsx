@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { PopUp } from './PopUp';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+import React, { useEffect, useRef, useState } from 'react'
+import { PopUp } from './PopUp'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 
 export const Tag = (props) => {
 
@@ -10,34 +10,34 @@ export const Tag = (props) => {
     onItemUnselected: handleItemUnselected,
     isConfirmOnDelete,
     tag
-  } = props;
+  } = props
 
-  const tagRef = useRef(null);
-  const containerRef = useRef(null);
+  const tagRef = useRef(null)
+  const containerRef = useRef(null)
 
-  const [isCofirmationVisible, setIsCofirmationVisible] = useState(false);
+  const [isCofirmationVisible, setIsCofirmationVisible] = useState(false)
 
   function onDeleteClick() {
     if (isConfirmOnDelete) {
-      setIsCofirmationVisible(true);
+      setIsCofirmationVisible(true)
     } else {
-      handleItemUnselected(tag);
+      handleItemUnselected(tag)
     }
   }
 
   const handleClickOutside = (event) => {
     if (containerRef.current && !containerRef.current.contains(event.target)) {
-      setIsCofirmationVisible(false);
+      setIsCofirmationVisible(false)
     }
   }
 
   useEffect(() => {
     if (isCofirmationVisible) {
-      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('mousedown', handleClickOutside)
     } else {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside)
     }
-  }, [isCofirmationVisible]);
+  }, [isCofirmationVisible])
 
   return (
     <React.Fragment>
@@ -62,13 +62,13 @@ export const Tag = (props) => {
                 label: 'yes',
                 classes: ['primary'],
                 onClick: function () {
-                  setIsCofirmationVisible(false);
-                  handleItemUnselected(tag);
+                  setIsCofirmationVisible(false)
+                  handleItemUnselected(tag)
                 }
               }, {
                 label: 'no',
                 classes: ['secondary'],
-                onClick: function () { setIsCofirmationVisible(false); }
+                onClick: function () { setIsCofirmationVisible(false) }
               }
             ]}
           ></PopUp>

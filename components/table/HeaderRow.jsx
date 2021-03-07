@@ -1,5 +1,5 @@
-import React from 'react';
-import { HeaderCell } from './HeaderCell';
+import React from 'react'
+import { HeaderCell } from './HeaderCell'
 
 export const HeaderRow = (props) => {
 
@@ -8,7 +8,7 @@ export const HeaderRow = (props) => {
     tableGuid,
     defaultSortColumnName,
     defaultSortDirection
-  } = props;
+  } = props
 
   return (
     <div className='header-row'>

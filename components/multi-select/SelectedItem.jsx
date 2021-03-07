@@ -1,14 +1,14 @@
-import React from 'react';
+import React from 'react'
 
 export const SelectedItem = (props) => {
 
   const {
     item,
     onItemUnselected: handleItemUnselected
-  } = props;
+  } = props
 
   const onDeleteClick = () => {
-    handleItemUnselected(item);
+    handleItemUnselected(item)
   }
 
   return (

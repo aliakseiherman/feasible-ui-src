@@ -1,5 +1,5 @@
-import React from 'react';
-import { getCellValue, updateCellValue } from '../helper';
+import React from 'react'
+import { getCellValue, updateCellValue } from '../helper'
 
 export const InputCell = (props) => {
 
@@ -7,14 +7,14 @@ export const InputCell = (props) => {
     data,
     column,
     updateRow
-  } = props;
+  } = props
 
   const {
     style,
     onChange: handleChange
-  } = column;
+  } = column
 
-  let value = getCellValue(data, column);
+  let value = getCellValue(data, column)
 
   return (
     <div
@@ -22,9 +22,9 @@ export const InputCell = (props) => {
       style={style}
     >
       <input className='in-cell-input' type='text' value={value} onChange={function (e) {
-        updateCellValue(e.target.value, data, column);
-        updateRow(data);
-        handleChange(data);
+        updateCellValue(e.target.value, data, column)
+        updateRow(data)
+        handleChange(data)
       }} />
     </div>
   )

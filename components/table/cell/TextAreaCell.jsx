@@ -1,6 +1,6 @@
-import React from 'react';
-import { TextArea } from '../../text-area/TextArea';
-import { getCellValue, updateCellValue } from '../helper';
+import React from 'react'
+import { TextArea } from '../../text-area/TextArea'
+import { getCellValue, updateCellValue } from '../helper'
 
 export const TextAreaCell = (props) => {
 
@@ -9,14 +9,14 @@ export const TextAreaCell = (props) => {
     column,
     updateRow,
     dataRowsContainerRef
-  } = props;
+  } = props
 
   const {
     style,
     onChange: handleChange
-  } = column;
+  } = column
 
-  const value = getCellValue(data, column);
+  const value = getCellValue(data, column)
 
   return (
     <div
@@ -26,9 +26,9 @@ export const TextAreaCell = (props) => {
       <TextArea
         value={value}
         onChange={(value) => {
-          updateCellValue(value, data, column);
-          updateRow(data);
-          handleChange(data);
+          updateCellValue(value, data, column)
+          updateRow(data)
+          handleChange(data)
         }}
         isFullWidth={true}
         customClasses={['in-table-text-area']}

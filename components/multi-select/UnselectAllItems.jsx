@@ -1,10 +1,10 @@
-import React from 'react';
+import React from 'react'
 
 export const UnselectAllItems = (props) => {
 
   const {
     onClick: handleClick
-  } = props;
+  } = props
 
   return (
     <div

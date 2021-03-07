@@ -1,13 +1,13 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { HeaderRow } from './HeaderRow';
-import { Row } from './Row';
-import { FooterRow } from './FooterRow';
+import React, { useState, useEffect, useRef } from 'react'
+import { HeaderRow } from './HeaderRow'
+import { Row } from './Row'
+import { FooterRow } from './FooterRow'
 
-import store from './store';
-import { EVENT_HEADER_CELL_CLICKED, SORT_DIRECTION_ASCENDING, EVENT_SIZE_CHANGED, EVENT_PAGE_CHANGED } from './constants';
-import { getRowSettings } from './helper';
+import store from './store'
+import { EVENT_HEADER_CELL_CLICKED, SORT_DIRECTION_ASCENDING, EVENT_SIZE_CHANGED, EVENT_PAGE_CHANGED } from './constants'
+import { getRowSettings } from './helper'
 
-import '../../assets/styles/feasible-ui.css';
+import '../../assets/styles/feasible-ui.css'
 
 export const Table = (props) => {
 
@@ -22,19 +22,19 @@ export const Table = (props) => {
     filterConfig,
     setFilterConfig,
     totalCount
-  } = props;
+  } = props
 
-  const tableContainerRef = useRef(null);
-  const dataRowsContainerRef = useRef(null);
+  const tableContainerRef = useRef(null)
+  const dataRowsContainerRef = useRef(null)
 
-  const [rows, setRows] = useState([]);
+  const [rows, setRows] = useState([])
 
   useEffect(() => {
-    setRows(props.data);
-  }, [props.data]);
+    setRows(props.data)
+  }, [props.data])
 
   const updateRow = (row) => {
-    setRows(rows.map((r) => (r === row) ? row : r));
+    setRows(rows.map((r) => (r === row) ? row : r))
   }
 
   useEffect(() => {
@@ -44,49 +44,49 @@ export const Table = (props) => {
       isAscending: defaultSortDirection === SORT_DIRECTION_ASCENDING,
       size: defaultSize,
       page: 1
-    });
+    })
 
     const unsubscribe =
       store.subscribe(() => {
 
-        let bus = store.getState().bus;
+        let bus = store.getState().bus
 
         if (bus.type === EVENT_HEADER_CELL_CLICKED) {
           if (bus.tableGuid === guid && !!bus.columnName) {
             setFilterConfig((prevState) => {
-              prevState.columnName = bus.columnName;
-              prevState.isAscending = bus.orderDirection === SORT_DIRECTION_ASCENDING;
-              return ({ ...prevState });
-            });
+              prevState.columnName = bus.columnName
+              prevState.isAscending = bus.orderDirection === SORT_DIRECTION_ASCENDING
+              return ({ ...prevState })
+            })
           }
         }
 
         if (bus.type === EVENT_SIZE_CHANGED) {
           if (bus.tableGuid === guid && !!bus.size) {
             setFilterConfig((prevState) => {
-              prevState.size = bus.size;
-              return ({ ...prevState });
-            });
+              prevState.size = bus.size
+              return ({ ...prevState })
+            })
           }
         }
 
         if (bus.type === EVENT_PAGE_CHANGED) {
           if (bus.tableGuid === guid && !!bus.number) {
             setFilterConfig((prevState) => {
-              prevState.page = bus.number;
-              return ({ ...prevState });
-            });
+              prevState.page = bus.number
+              return ({ ...prevState })
+            })
           }
         }
 
-      });
+      })
 
     return () => {
-      unsubscribe();
+      unsubscribe()
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [])
 
   return (
     <div
@@ -107,7 +107,7 @@ export const Table = (props) => {
 
         {rows && rows.map(function (data, i) {
 
-          const settings = getRowSettings(data, i);
+          const settings = getRowSettings(data, i)
 
           return (
             <React.Fragment key={i}>
@@ -123,7 +123,7 @@ export const Table = (props) => {
 
               {auxiliaryRows && auxiliaryRows.map(function (descriptor, i2) {
 
-                const AuxilliaryRow = descriptor.component;
+                const AuxilliaryRow = descriptor.component
 
                 return (
                   <AuxilliaryRow

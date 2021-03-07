@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
-import { Button } from '../button/Button';
+import React, { useState } from 'react'
+import { Button } from '../button/Button'
 
 export const CustomTemplate = (props) => {
 
   const {
     descriptor,
     close
-  } = props;
+  } = props
 
   const {
     func
-  } = descriptor;
+  } = descriptor
 
-  const [view, setView] = useState('message');
+  const [view, setView] = useState('message')
 
   return (
     <div
@@ -20,7 +20,7 @@ export const CustomTemplate = (props) => {
     >
       {view === 'message' &&
         <>
-          <div className='toast-heading'><span style={{color: 'rgb(138 206 255)'}}>from</span> John Doe</div>
+          <div className='toast-heading'><span style={{ color: 'rgb(138 206 255)' }}>from</span> John Doe</div>
           <div className='toast-text'>hi there, we need your immediate help with #0982</div>
           <div className='label'>attachments:</div>
           <div className='attachments'>
@@ -31,7 +31,7 @@ export const CustomTemplate = (props) => {
           <div className='buttons'>
             <Button
               label={'quick reply'}
-              onClick={() => { setView('reply'); }}
+              onClick={() => { setView('reply') }}
             ></Button>
             <Button
               label={'view'}
